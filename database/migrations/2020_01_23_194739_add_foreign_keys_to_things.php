@@ -1,0 +1,55 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class AddForeignKeysToThings extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        if (Schema::hasTable('things')) {
+    
+            Schema::enableForeignKeyConstraints();
+            
+            Schema::table('things', function (Blueprint $table) {
+                $table->unsignedBigInteger('user_id');
+                $table->foreign('user_id')
+                    ->references('id')
+                    ->on('users')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
+
+                $table->unsignedBigInteger('step_thing_id')->nullable();
+                $table->foreign('step_thing_id')
+                    ->references('id')
+                    ->on('things')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
+            });
+        }
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        if (Schema::hasTable('things')) {
+            
+            Schema::enableForeignKeyConstraints();
+            
+            Schema::table('things', function (Blueprint $table) {
+                $table->dropIndex(['user_id', 'step_thing_id']);
+                $table->dropColumn(['user_id', 'step_thing_id']);
+            });
+        }
+    }
+}

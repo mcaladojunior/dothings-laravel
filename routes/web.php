@@ -11,18 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/things', 'ThingController@index')->name('things.index');
+Route::get('/things/create', 'ThingController@create')->name('things.create');
+Route::post('/things/store', 'ThingController@store')->name('things.store');
+Route::get('/things/show/{id}', 'ThingController@show')->name('things.show');
+Route::get('/things/edit/{id}', 'ThingController@edit')->name('things.edit');
+Route::put('/things/update', 'ThingController@update')->name('things.update');
+Route::delete('/things/delete', 'ThingController@delete')->name('things.delete');

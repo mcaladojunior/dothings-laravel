@@ -3,12 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Thing;
+use Illuminate\Support\Facades\Auth;
 
 class ThingController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-    	$things = Thing::all();
+    	$things = Auth::user()->things;
         return view('things.index', compact('things'));
     }
 
