@@ -38,12 +38,12 @@
                 <div class="form-group">
                     <label for="status">Status</label>
                     <select name="status" class="form-control @error('status') is-invalid @enderror" id="thing-status">
-                        <option value="0" selected="{{ ($thing->status == 0) ? 'selected' : '' }}">Undefined</option>
-                        <option value="1" selected="{{ ($thing->status == 1) ? 'selected' : '' }}">To-Do</option>
-                        <option value="2" selected="{{ ($thing->status == 2) ? 'selected' : '' }}">Doing</option>
-                        <option value="3" selected="{{ ($thing->status == 3) ? 'selected' : '' }}">Done</option>
-                        <option value="4" selected="{{ ($thing->status == 4) ? 'selected' : '' }}">With Problem</option>
-                        <option value="5" selected="{{ ($thing->status == 5) ? 'selected' : '' }}">Blocked</option>
+                        <option value="0" {{ ($thing->status == 0) ? 'selected' : null }}>Undefined</option>
+                        <option value="1" {{ ($thing->status == 1) ? 'selected' : null }}>To-Do</option>
+                        <option value="2" {{ ($thing->status == 2) ? 'selected' : null }}>Doing</option>
+                        <option value="3" {{ ($thing->status == 3) ? 'selected' : null }}>Done</option>
+                        <option value="4" {{ ($thing->status == 4) ? 'selected' : null }}>With Problem</option>
+                        <option value="5" {{ ($thing->status == 5) ? 'selected' : null }}>Blocked</option>
                     </select>
                 </div>
             </div>
@@ -62,36 +62,36 @@
                 <div class="form-group">
                     <label for="difficulty">Difficulty</label>
                     <select name="difficulty" class="form-control @error('difficulty') is-invalid @enderror" id="thing-difficulty">
-                        <option value="0" selected="{{ ($thing->difficulty == 0) ? 'selected' : '' }}">Undefined</option>
-                        <option value="1" selected="{{ ($thing->difficulty == 1) ? 'selected' : '' }}">Very Easy</option>
-                        <option value="2" selected="{{ ($thing->difficulty == 2) ? 'selected' : '' }}">Easy</option>
-                        <option value="3" selected="{{ ($thing->difficulty == 3) ? 'selected' : '' }}">Medium</option>
-                        <option value="4" selected="{{ ($thing->difficulty == 4) ? 'selected' : '' }}">Hard</option>
-                        <option value="5" selected="{{ ($thing->difficulty == 5) ? 'selected' : '' }}">Very Hard</option>
+                        <option value="0" {{ ($thing->difficulty == 0) ? 'selected' : null }}>Undefined</option>
+                        <option value="1" {{ ($thing->difficulty == 1) ? 'selected' : null }}>Very Easy</option>
+                        <option value="2" {{ ($thing->difficulty == 2) ? 'selected' : null }}>Easy</option>
+                        <option value="3" {{ ($thing->difficulty == 3) ? 'selected' : null }}>Medium</option>
+                        <option value="4" {{ ($thing->difficulty == 4) ? 'selected' : null }}>Hard</option>
+                        <option value="5" {{ ($thing->difficulty == 5) ? 'selected' : null }}>Very Hard</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="importance">Importance</label>
                     <select name="importance" class="form-control @error('importance') is-invalid @enderror" id="thing-importance">
-                        <option value="0" selected="{{ ($thing->importance == 0) ? 'selected' : '' }}">Undefined</option>
-                        <option value="1" selected="{{ ($thing->importance == 1) ? 'selected' : '' }}">Not important</option>
-                        <option value="2" selected="{{ ($thing->importance == 2) ? 'selected' : '' }}">Little important</option>
-                        <option value="3" selected="{{ ($thing->importance == 3) ? 'selected' : '' }}">Medium important</option>
-                        <option value="4" selected="{{ ($thing->importance == 4) ? 'selected' : '' }}">Important</option>
-                        <option value="5" selected="{{ ($thing->importance == 5) ? 'selected' : '' }}">Very important</option>
+                        <option value="0" {{ ($thing->importance == 0) ? 'selected' : null }}>Undefined</option>
+                        <option value="1" {{ ($thing->importance == 1) ? 'selected' : null }}>Not important</option>
+                        <option value="2" {{ ($thing->importance == 2) ? 'selected' : null }}>Little important</option>
+                        <option value="3" {{ ($thing->importance == 3) ? 'selected' : null }}>Medium important</option>
+                        <option value="4" {{ ($thing->importance == 4) ? 'selected' : null }}>Important</option>
+                        <option value="5" {{ ($thing->importance == 5) ? 'selected' : null }}>Very important</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="urgency">Urgency</label>
                     <select name="urgency" class="form-control @error('urgency') is-invalid @enderror" id="thing-urgency">
-                        <option value="0" selected="{{ ($thing->urgency == 0) ? 'selected' : '' }}">Undefined</option>
-                        <option value="1" selected="{{ ($thing->urgency == 1) ? 'selected' : '' }}">Not urgent</option>
-                        <option value="2" selected="{{ ($thing->urgency == 2) ? 'selected' : '' }}">Little urgent</option>
-                        <option value="3" selected="{{ ($thing->urgency == 3) ? 'selected' : '' }}">Medium urgent</option>
-                        <option value="4" selected="{{ ($thing->urgency == 4) ? 'selected' : '' }}">Urgent</option>
-                        <option value="5" selected="{{ ($thing->urgency == 5) ? 'selected' : '' }}">Very urgent</option>
+                        <option value="0" {{ ($thing->urgency == 0) ? 'selected' : null }}>Undefined</option>
+                        <option value="1" {{ ($thing->urgency == 1) ? 'selected' : null }}>Not urgent</option>
+                        <option value="2" {{ ($thing->urgency == 2) ? 'selected' : null }}>Little urgent</option>
+                        <option value="3" {{ ($thing->urgency == 3) ? 'selected' : null }}>Medium urgent</option>
+                        <option value="4" {{ ($thing->urgency == 4) ? 'selected' : null }}>Urgent</option>
+                        <option value="5" {{ ($thing->urgency == 5) ? 'selected' : null }}>Very urgent</option>
                     </select>
                 </div>
 
