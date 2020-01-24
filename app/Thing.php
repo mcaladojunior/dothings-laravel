@@ -22,12 +22,12 @@ class Thing extends Model
 
 	public function steps()
     {
-        return $this->hasMany('App\Thing');
+        return $this->hasMany('App\Thing', 'thing_id');
     }    
 
     public function mainThing()
     {
-        return $this->belongsTo('App\Thing');
+        return $this->belongsTo('App\Thing', 'thing_id');
     }
 
     public function lists()
@@ -35,5 +35,10 @@ class Thing extends Model
         return $this->belongsToMany(
             'App\Lists', 'lists_has_things', 'thing_id', 'list_id'
         );
+    }
+
+    public function reminders()
+    {
+        return $this->hasMany('App\Reminder');
     }
 }

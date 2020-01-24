@@ -9,7 +9,7 @@ class Lists extends Model
 	protected $table = 'lists';
 
     protected $fillable = [
-    	'name', 'description', 'priority'
+    	'name', 'description', 'priority', 'user_id'
 	];
 
 	public function user()
