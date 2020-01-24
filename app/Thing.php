@@ -12,7 +12,7 @@ class Thing extends Model
 
     protected $fillable = [
     	'name', 'description', 'status', 'start_at', 'end_at', 'difficulty', 'importance', 
-        'user_id', 'step_thing_id', 'urgency'
+        'user_id', 'thing_id', 'urgency'
     ];
 
     public function user()
@@ -22,11 +22,18 @@ class Thing extends Model
 
 	public function steps()
     {
-        return $this->hasMany('App\Thing', 'step_thing_id');
+        return $this->hasMany('App\Thing');
     }    
 
     public function mainThing()
     {
-        return $this->belongsTo('App\Thing', 'step_thing_id');
+        return $this->belongsTo('App\Thing');
+    }
+
+    public function lists()
+    {
+        return $this->belongsToMany(
+            'App\Lists', 'lists_has_things', 'thing_id', 'list_id'
+        );
     }
 }

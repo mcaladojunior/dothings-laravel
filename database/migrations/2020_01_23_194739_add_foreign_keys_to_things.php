@@ -25,8 +25,8 @@ class AddForeignKeysToThings extends Migration
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
 
-                $table->unsignedBigInteger('step_thing_id')->nullable();
-                $table->foreign('step_thing_id')
+                $table->unsignedBigInteger('thing_id')->nullable();
+                $table->foreign('thing_id')
                     ->references('id')
                     ->on('things')
                     ->onUpdate('cascade')
@@ -47,8 +47,11 @@ class AddForeignKeysToThings extends Migration
             Schema::enableForeignKeyConstraints();
             
             Schema::table('things', function (Blueprint $table) {
-                $table->dropIndex(['user_id', 'step_thing_id']);
-                $table->dropColumn(['user_id', 'step_thing_id']);
+                $table->dropForeign('things_thing_id_foreign');
+                $table->dropColumn('thing_id');
+
+                $table->dropForeign('things_user_id_foreign');
+                $table->dropColumn('user_id');
             });
         }
     }

@@ -16,6 +16,6 @@ $factory->define(Thing::class, function (Faker $faker) {
         'difficulty' => $faker->randomElement([1,2,3,4,5]), 
         'importance' => $faker->randomElement([1,2,3,4,5]),
         'urgency' => $faker->randomElement([1,2,3,4,5]),
-        'user_id' => 1,
+        'user_id' => $faker->randomElement([1,2,3,4,5])
     ];
 });

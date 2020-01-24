@@ -18,12 +18,13 @@ class CreateThingsTable extends Migration
             $table->timestamps();
 
             $table->string('name', 128);
-            $table->text('description');
-            $table->smallInteger('status');
-            $table->dateTime('start_at');
-            $table->dateTime('end_at');
-            $table->smallInteger('difficulty');
-            $table->smallInteger('importance');
+            $table->text('description')->nullable();
+            $table->smallInteger('status')->nullable()->default(0);
+            $table->dateTime('start_at')->nullable();
+            $table->dateTime('end_at')->nullable();
+            $table->smallInteger('difficulty')->nullable()->default(0);
+            $table->smallInteger('importance')->nullable()->default(0);
+            $table->smallInteger('urgency')->nullable()->default(0);
         });
     }
 
