@@ -6,9 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Thing extends Model
 {
+    protected $dates = [
+        'start_at', 'end_at'
+    ];
+
     protected $fillable = [
     	'name', 'description', 'status', 'start_at', 'end_at', 'difficulty', 'importance', 
-        'user_id', 'step_thing_id'
+        'user_id', 'step_thing_id', 'urgency'
     ];
 
     protected $hidden = [
