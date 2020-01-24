@@ -35,7 +35,10 @@
     <div class="row justify-content-center">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">  
             <div class="card">
-                <div class="card-header"><h3 class="text-center">All the 'Things' you own</h3></div>
+                <div class="card-header">
+                    <h3 class="text-center">All the 'Things' you own</h3>
+                    <a href="{{ route('things.create') }}" class="btn btn-primary">New</a>
+                </div>
                 <div class="card-body">
                     <div class="row justify-content-center">
                         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"> 

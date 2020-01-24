@@ -15,9 +15,6 @@ class Thing extends Model
         'user_id', 'step_thing_id', 'urgency'
     ];
 
-    protected $hidden = [
-    ];
-
     public function user()
     {
         return $this->belongsTo('App\User');

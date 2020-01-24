@@ -34,7 +34,8 @@ class ThingController extends Controller
             'start_at' => 'required', 
             'end_at' => 'required', 
             'difficulty' => 'required', 
-            'importance' => 'required'
+            'importance' => 'required',
+            'urgency' => 'required'
         ]);
         
         $thing = Auth::user()->things()->create($validatedData);
@@ -63,7 +64,8 @@ class ThingController extends Controller
             'start_at' => 'required', 
             'end_at' => 'required', 
             'difficulty' => 'required', 
-            'importance' => 'required'
+            'importance' => 'required',
+            'urgency' => 'required'
         ]);
         
         Thing::whereId($id)->update($validatedData);

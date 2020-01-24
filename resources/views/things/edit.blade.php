@@ -100,6 +100,7 @@
         </div>
         <div class="row justify-content-center">
             <div class="form-group">
+                <a href="{{ url()->previous() }}" class="btn btn-info">Cancel</a>
                 <button type="submit" class="btn btn-primary">
                     Send
                 </button>

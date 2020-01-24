@@ -82,7 +82,7 @@
                     </select>
                 </div>
 
-                {{-- <div class="form-group">
+                <div class="form-group">
                     <label for="urgency">Urgency</label>
                     <select name="urgency" class="form-control @error('urgency') is-invalid @enderror" id="thing-urgency">
                         <option value="0">Undefined</option>
@@ -92,13 +92,14 @@
                         <option value="4">Urgent</option>
                         <option value="5">Very urgent</option>
                     </select>
-                </div> --}}
+                </div>
 
                 <h3><a href="#">STEPS</a></h3>
             </div>
         </div>
         <div class="row justify-content-center">
             <div class="form-group">
+                <a href="{{ url()->previous() }}" class="btn btn-info">Cancel</a>
                 <button type="submit" class="btn btn-primary">
                     Send
                 </button>
