@@ -16,3 +16,7 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::resource('things', 'ThingController');
+Route::post('things/storeFromList', 'ThingController@storeFromList')->name('things.storeFromList');
+
+Route::resource('lists', 'ListController');
+Route::resource('reminders', 'ReminderController');

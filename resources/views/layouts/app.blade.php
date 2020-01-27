@@ -34,12 +34,29 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         @guest
-                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="/#about">About</a>
+                            </li>
                         @else
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('things.index') }}">Things</a>
+                                <a class="nav-link" href="{{ route('reminders.index') }}">Reminders</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('lists.index') }}">Lists</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#folders">Folders</a>
                             </li>
                         @endguest
+                        <li class="mx-4"></li>
+                        <form class="form-inline">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                     <span class="input-group-text"><i class="fas fa-search"></i></span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Search" aria-label="Search">
+                            </div>
+                        </form>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -55,9 +72,16 @@
                                 </li>
                             @endif
                         @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="#settings"><i class="fas fa-cog"></i></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#notifications"><i class="fas fa-bell"></i></a>
+                            </li>
+                            <li class="mx-2"></li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    <i class="fas fa-user" data-toggle="tooltip" data-placement="top" title="{{ Auth::user()->name }}"></i>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -77,9 +101,79 @@
                 </div>
             </div>
         </nav>
-
         <main class="py-4">
-            @yield('content')
+            <div class="row justify-content-center">
+                <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2">
+                    <div class="container">
+                        <ul class="nav nav-pills nav-fill flex-column">
+                            <li class="nav-item my-1">
+                                <a class="nav-link" data-toggle="collapse" href="#lists-list" role="button" aria-expanded="false" aria-controls="lists-list"><i class="fas fa-list mx-2"></i>Lists</a>
+                            </li>
+                            @auth
+                            <li>
+                                <div id="lists-list" class="collapse show">
+                                    <ul class="nav flex-column my-1">
+                                        <li class="nav-item my-1">
+                                            <a class="list-group-item list-group-item-action active" href="{{ route('lists.create') }}"><i class="fas fa-plus mx-2"></i>New List</a>
+                                        </li>
+                                        @foreach(Auth::user()->lists()->orderBy('priority')->get() as $list)
+                                        <li class="nav-item my-1">
+                                            <a class="list-group-item list-group-item-action" href="{{ route('lists.show', $list->id) }}">{{ $list->name }}</a>
+                                        </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </li>
+                            @endauth
+                            <li class="nav-item my-1">
+                                <a class="nav-link" data-toggle="collapse" href="#folders-list" role="button" aria-expanded="false" aria-controls="folders-list"><i class="fas fa-folder mx-2"></i>Folders</a>
+                            </li>
+                            @auth
+                            <li>
+                                <div id="folders-list" class="collapse">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item my-1">
+                                            <a class="list-group-item list-group-item-action active" href="#new-folder"><i class="fas fa-plus mx-2"></i>New Folder</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            @endauth
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
+                    <div class="container">
+                        @if ($message = Session::get('success'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <p>{{ $message }}</p>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        @endif
+
+                        @if ($message = Session::get('warning'))
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                <p>{{ $message }}</p>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        @endif
+
+                        @if ($message = Session::get('error'))
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <p>{{ $message }}</p>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        @endif
+                    </div>
+                    @yield('content')
+                </div>
+            </div>
         </main>
     </div>
 </body>

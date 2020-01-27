@@ -11,8 +11,8 @@ class Thing extends Model
     ];
 
     protected $fillable = [
-    	'name', 'description', 'status', 'start_at', 'end_at', 'difficulty', 'importance', 
-        'user_id', 'thing_id', 'urgency'
+    	'name', 'description', 'status', 'start_at', 'end_at', 'difficulty', 
+        'importance', 'user_id', 'thing_id', 'urgency'
     ];
 
     public function user()
@@ -22,7 +22,9 @@ class Thing extends Model
 
 	public function steps()
     {
-        return $this->hasMany('App\Thing', 'thing_id');
+        return $this->hasMany('App\Thing', 'thing_id')
+                ->orderBy('created_at', 'desc')
+                ->orderBy('updated_at', 'desc');
     }    
 
     public function mainThing()
@@ -34,11 +36,14 @@ class Thing extends Model
     {
         return $this->belongsToMany(
             'App\Lists', 'lists_has_things', 'thing_id', 'list_id'
-        );
+        )->orderBy('created_at', 'desc')
+            ->orderBy('updated_at', 'desc');;
     }
 
     public function reminders()
     {
-        return $this->hasMany('App\Reminder');
+        return $this->hasMany('App\Reminder')->orderBy('created_at', 'desc')
+                ->orderBy('updated_at', 'desc')
+                ->orderBy('date_time', 'desc');
     }
 }

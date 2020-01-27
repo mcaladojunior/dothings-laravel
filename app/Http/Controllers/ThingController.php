@@ -16,7 +16,7 @@ class ThingController extends Controller
 
     public function index()
     {
-    	$things = Auth::user()->things()->paginate(25);
+    	$things = Auth::user()->things()->paginate(15);
         return view('things.index', compact('things'));
     }
 
@@ -28,19 +28,29 @@ class ThingController extends Controller
 	public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required|max:128', 
-            'description' => 'required', 
-            'status' => 'required', 
-            'start_at' => 'required', 
-            'end_at' => 'required', 
-            'difficulty' => 'required', 
-            'importance' => 'required',
-            'urgency' => 'required'
+            'name' => 'required|max:128',
         ]);
         
         $thing = Auth::user()->things()->create($validatedData);
 
         return redirect()->route('things.index')->with('success','Thing created successfully.');
+    }
+
+    public function storeFromList(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|max:128',
+            'list_id' => 'required'
+        ]);
+        
+        $list = Auth::user()->lists()->where('id', $request['list_id'])->first();
+
+        $list->things()->create([
+            'name' => $request['name'],
+            'user_id' => Auth::id()
+        ]);
+
+        return back()->with('success','Thing created successfully.');
     }
 
     public function show($id)
@@ -59,13 +69,6 @@ class ThingController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required|max:128', 
-            'description' => 'required', 
-            'status' => 'required', 
-            'start_at' => 'required', 
-            'end_at' => 'required', 
-            'difficulty' => 'required', 
-            'importance' => 'required',
-            'urgency' => 'required'
         ]);
         
         Thing::whereId($id)->update($validatedData);

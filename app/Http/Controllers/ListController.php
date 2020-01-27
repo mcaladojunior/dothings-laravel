@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ListController extends Controller
 {
-        public function __construct()
+    public function __construct()
     {
         $this->middleware('auth');
     }
@@ -59,7 +59,7 @@ class ListController extends Controller
             'priority' => 'required'
         ]);
         
-        Lists::whereId($id)->update([
+        Lists::whereId($id)->andWhere('user_id', Auth::id())->update([
         	'name' => $request['name'], 
         	'description' => $request['description'],
             'priority' => $request['priority']
@@ -70,7 +70,10 @@ class ListController extends Controller
 
     public function destroy($id)
     {
-        Lists::findOrFail($id)->delete();
+        $list = Lists::findOrFail($id);
+        if(Auth::user()->lists->contains($list)) {
+            $list->delete();
+        }
     	return redirect()->route('lists.index')->with('success','List deleted successfully.');
     }    
 }
