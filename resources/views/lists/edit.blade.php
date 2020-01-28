@@ -1,5 +1,17 @@
 @extends('layouts.app')
 
+@section('left-sidebar')
+    @auth
+        @include('_left_sidebar')
+    @endauth
+@endsection
+
+@section('right-sidebar')
+    @auth
+        @include('_right_sidebar')
+    @endauth
+@endsection
+
 @section('content')
     <div class="row justify-content-center">
         <div class="container">
@@ -15,7 +27,7 @@
         </div>
     </div>
     <div class="row justify-content-center">
-        <div class="container">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             <form method="POST" action="{{ route('lists.update', $list) }}">
                 @csrf
 
@@ -46,9 +58,10 @@
                 </div>
 
                 <div class="form-group text-center">
-                    <a href="{{ url()->previous() }}" class="btn btn-info"><i class="fas fa-arrow-left mx-2"></i>Cancel</a>
+                    <a href="{{ url()->previous() }}" class="btn btn-info"><i class="fas fa-arrow-left mr-2"></i>Cancel</a>
                     <button type="submit" class="btn btn-primary">
-                        Send<i class="fas fa-arrow-right mr-2"></i>
+                        Send
+                        <i class="fas fa-arrow-right ml-2"></i>
                     </button>
                 </div>
             </form>

@@ -1,43 +1,27 @@
-@extends('layouts.app')
-
-@section('left-sidebar')
-    @auth
-        @include('_left_sidebar')
-    @endauth
-@endsection
-
-@section('right-sidebar')
-    @auth
-        @include('_right_sidebar')
-    @endauth
-@endsection
-
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col">
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-        </div>
+<div class="row justify-content-center">
+    <div class="container">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
     </div>
-    <form method="POST" action="{{ route('things.update', $thing) }}">
-        @csrf
+</div>
+<div class="row justify-content-center">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        <div class="container">
+            <form method="POST" action="{{ route('things.update', $thing) }}">
+                @csrf
 
-        @method('PUT')
+                @method('PUT')
 
-        <div class="row justify-content-center">
-            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input name="name" type="text" class="form-control @error('name') is-invalid @enderror" id="thing-name" value="{{ $thing->name }}">
-                    {{-- <small class="form-text text-muted">Name or Title of the thing.</small> --}}
                 </div>
                 
                 <div class="form-group">
@@ -58,9 +42,7 @@
                         <option value="5" {{ ($thing->status == 5) ? 'selected' : null }}>Blocked</option>
                     </select>
                 </div>
-            </div>
 
-            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                 <div class="form-group">
                     <label for="start_at">Start at:</label>
                     <input name="start_at" type="datetime-local" class="form-control @error('start_at') is-invalid @enderror" id="thing-start_at" value="{{ $thing->start_at->format('Y-m-d\TH:i:s') }}">
@@ -107,17 +89,13 @@
                     </select>
                 </div>
 
-                <h3><a href="#">STEPS</a></h3>
-            </div>
+                <div class="form-group text-center">
+                    <a href="{{ url()->previous() }}" class="btn btn-info"><i class="fas fa-arrow-left mx-2"></i>Cancel</a>
+                    <button type="submit" class="btn btn-primary">
+                        Send<i class="fas fa-arrow-right mx-2"></i>
+                    </button>
+                </div>
+            </form>
         </div>
-        <div class="row justify-content-center">
-            <div class="form-group">
-                <a href="{{ url()->previous() }}" class="btn btn-info">Cancel</a>
-                <button type="submit" class="btn btn-primary">
-                    Send
-                </button>
-            </div>
-        </div>
-    </form>
+    </div>
 </div>
-@endsection

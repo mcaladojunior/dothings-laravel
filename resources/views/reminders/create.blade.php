@@ -1,5 +1,17 @@
 @extends('layouts.app')
 
+@section('left-sidebar')
+    @auth
+        @include('_left_sidebar')
+    @endauth
+@endsection
+
+@section('right-sidebar')
+    @auth
+        @include('_right_sidebar')
+    @endauth
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">

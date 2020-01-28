@@ -12,7 +12,7 @@
     </div>
 </div>
 <div class="row justify-content-center">
-    <div class="container">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <form method="POST" action="{{ route('lists.update', $list) }}">
             @csrf
 
@@ -42,7 +42,7 @@
 
             <div class="form-group text-center">
                 <button type="submit" class="btn btn-primary">
-                    Send<i class="fas fa-arrow-right mr-2"></i>
+                    Send<i class="fas fa-arrow-right ml-2"></i>
                 </button>
             </div>
         </form>

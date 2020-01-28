@@ -9,7 +9,7 @@
                     </a>
                 </div>
                 <div class="col text-right">
-                    <i class="fas fa-sort-amount-up mx-2" data-toggle="tooltip" data-placement="top" v-bind:title="'priority: '+priority"></i>
+                    <i class="fas fa-sort-amount-up mx-2" data-toggle="tooltip" data-placement="top" v-bind:title="'Priority: '+priority"></i> 
                     <i class="fas fa-ellipsis-v mx-2" data-toggle="tooltip" data-placement="top" title="options"></i>
                 </div> 
             </div>

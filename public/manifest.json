@@ -1,7 +1,8 @@
 {
-  "name": "app name",
-  "short_name": "short name",
-  "icons": [{
+  "name": "DoThings",
+  "short_name": "DoThings",
+  "icons": [
+  {
     "src": "images/icons/icon-48x48.png",
     "sizes": "48x48",
     "type": "image/png"
@@ -47,7 +48,6 @@
   "permissions": [
     "gcm"
   ],
-  "scope": "",
   "orientation": "portrait",
   "display": "standalone",
   "theme_color": "#ffffff",

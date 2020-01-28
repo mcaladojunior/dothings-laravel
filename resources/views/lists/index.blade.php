@@ -1,5 +1,17 @@
 @extends('layouts.app')
 
+@section('left-sidebar')
+    @auth
+        @include('_left_sidebar')
+    @endauth
+@endsection
+
+@section('right-sidebar')
+    @auth
+        @include('_right_sidebar')
+    @endauth
+@endsection
+
 @section('content')
     <div class="card">
         <div class="card-header">
@@ -13,7 +25,7 @@
                 <list-card-lg id="lcard-{{ $list->id }}" name="{{ $list->name }}" priority="{{ $list->priority }}">
                     @foreach($list->things as $thing)
                         <thing-card name="{{ $thing->name }}" status="status: {{ $thing->status }}" start_at="start at: {{ $thing->start_at }}" end_at="end at: {{ $thing->end_at }}" difficulty="difficulty: {{ $thing->difficulty }}" importance="importance: {{ $thing->importance }}" urgency="urgency: {{ $thing->urgency }}"></thing-card>
-                    @endforeach        
+                    @endforeach       
                 </list-card-lg>
             @endforeach
             <div class="row justify-content-center text-center">

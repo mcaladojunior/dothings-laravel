@@ -45,9 +45,6 @@
 <meta name="full-screen" content="yes">
 <meta name="browsermode" content="application">
 
-<!-- Fitscreen  -->
-<meta name="viewport" content="uc-fitscreen=yes">
-
 <!-- Orientation  -->
 <meta name="screen-orientation" content="portrait">
 

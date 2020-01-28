@@ -1,5 +1,17 @@
 @extends('layouts.app')
 
+@section('left-sidebar')
+    @auth
+        @include('_left_sidebar')
+    @endauth
+@endsection
+
+@section('right-sidebar')
+    @auth
+        @include('_right_sidebar')
+    @endauth
+@endsection
+
 @section('content')
     <list-card-lg id="lcard-{{ $list->id }}" name="{{ $list->name }}" priority="{{ $list->priority }}" show="true">
         <a class="btn btn-primary" data-toggle="collapse" href="#newThingCollapse" role="button" aria-expanded="false" aria-controls="newThingCollapse">

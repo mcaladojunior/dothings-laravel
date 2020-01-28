@@ -7507,6 +7507,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['id', 'name', 'priority', 'show']
 });
@@ -7522,6 +7524,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -43090,14 +43094,30 @@ var render = function() {
         ),
         _vm._v(" "),
         _c("div", { staticClass: "col text-right" }, [
-          _c("i", {
-            staticClass: "fas fa-sort-amount-up mx-2",
-            attrs: {
-              "data-toggle": "tooltip",
-              "data-placement": "top",
-              title: "priority: " + _vm.priority
-            }
-          }),
+          _c(
+            "a",
+            {
+              attrs: {
+                tabindex: "0",
+                role: "button",
+                "data-toggle": "popover",
+                "data-trigger": "focus",
+                "data-placement": "top",
+                title: "Priority",
+                "data-content": "Priority: " + _vm.priority
+              }
+            },
+            [
+              _c("i", {
+                staticClass: "fas fa-sort-amount-up mx-2",
+                attrs: {
+                  "data-toggle": "tooltip",
+                  "data-placement": "top",
+                  title: "Priority: " + _vm.priority
+                }
+              })
+            ]
+          ),
           _vm._v(" "),
           _c("i", {
             staticClass: "fas fa-ellipsis-v mx-2",
@@ -43194,14 +43214,30 @@ var render = function() {
         ),
         _vm._v(" "),
         _c("div", { staticClass: "col text-right" }, [
-          _c("i", {
-            staticClass: "fas fa-sort-amount-up mx-2",
-            attrs: {
-              "data-toggle": "tooltip",
-              "data-placement": "top",
-              title: "priority: " + _vm.priority
-            }
-          }),
+          _c(
+            "a",
+            {
+              attrs: {
+                tabindex: "0",
+                role: "button",
+                "data-toggle": "popover",
+                "data-trigger": "focus",
+                "data-placement": "top",
+                title: "Priority",
+                "data-content": "Priority: " + _vm.priority
+              }
+            },
+            [
+              _c("i", {
+                staticClass: "fas fa-sort-amount-up mx-2",
+                attrs: {
+                  "data-toggle": "tooltip",
+                  "data-placement": "top",
+                  title: "Priority: " + _vm.priority
+                }
+              })
+            ]
+          ),
           _vm._v(" "),
           _c("i", {
             staticClass: "fas fa-ellipsis-v mx-2",
