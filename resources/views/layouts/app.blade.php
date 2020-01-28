@@ -102,76 +102,87 @@
             </div>
         </nav>
         <main class="py-4">
-            <div class="row justify-content-center">
-                <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2">
-                    <div class="container">
-                        <ul class="nav nav-pills nav-fill flex-column">
-                            <li class="nav-item my-1">
-                                <a class="nav-link" data-toggle="collapse" href="#lists-list" role="button" aria-expanded="false" aria-controls="lists-list"><i class="fas fa-list mx-2"></i>Lists</a>
-                            </li>
-                            @auth
-                            <li>
-                                <div id="lists-list" class="collapse show">
-                                    <ul class="nav flex-column my-1">
-                                        <li class="nav-item my-1">
-                                            <a class="list-group-item list-group-item-action active" href="{{ route('lists.create') }}"><i class="fas fa-plus mx-2"></i>New List</a>
-                                        </li>
-                                        @foreach(Auth::user()->lists()->orderBy('priority')->get() as $list)
-                                        <li class="nav-item my-1">
-                                            <a class="list-group-item list-group-item-action" href="{{ route('lists.show', $list->id) }}">{{ $list->name }}</a>
-                                        </li>
-                                        @endforeach
-                                    </ul>
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
+                    <ul class="nav nav-pills nav-fill flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="collapse" href="#lists" role="button" aria-expanded="false" aria-controls="lists"><i class="fas fa-list mr-2"></i>Lists</a>
+                        </li>
+                        @auth
+                        <li>
+                            <div id="lists" class="collapse show">
+                                <ul class="nav nav-pills nav-fill flex-column">
+                                    <li class="nav-item">
+                                        <a class="btn btn-primary" href="{{ route('lists.create') }}">
+                                            <i class="fas fa-plus mr-2"></i>New List
+                                        </a>
+                                    </li>
+                                    @foreach(Auth::user()->lists as $list)
+                                        <list-card-sm route="{{ route('lists.show', $list) }}" name="{{ $list->name }}" ></list-card-sm>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </li>
+                        @endauth
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="collapse" href="#folders" role="button" aria-expanded="false" aria-controls="folders">
+                                <i class="fas fa-folder mr-2"></i>Folders
+                            </a>
+                        </li>
+                        @auth
+                        <li>
+                            <div id="folders" class="collapse">
+                                <ul class="nav nav-pills nav-fill flex-column">
+                                    <li class="nav-item">
+                                        <a class="btn btn-primary" href="#new-folder">
+                                            <i class="fas fa-plus mr-2"></i>New Folder
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        @endauth
+                    </ul>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                            @if ($message = Session::get('success'))
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <p>{{ $message }}</p>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
                                 </div>
-                            </li>
-                            @endauth
-                            <li class="nav-item my-1">
-                                <a class="nav-link" data-toggle="collapse" href="#folders-list" role="button" aria-expanded="false" aria-controls="folders-list"><i class="fas fa-folder mx-2"></i>Folders</a>
-                            </li>
-                            @auth
-                            <li>
-                                <div id="folders-list" class="collapse">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item my-1">
-                                            <a class="list-group-item list-group-item-action active" href="#new-folder"><i class="fas fa-plus mx-2"></i>New Folder</a>
-                                        </li>
-                                    </ul>
+                            @endif
+
+                            @if ($message = Session::get('warning'))
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                    <p>{{ $message }}</p>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
                                 </div>
-                            </li>
-                            @endauth
-                        </ul>
+                            @endif
+
+                            @if ($message = Session::get('error'))
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <p>{{ $message }}</p>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            @endif    
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                            @yield('content')
+                        </div>
                     </div>
                 </div>
-                <div class="col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
-                    <div class="container">
-                        @if ($message = Session::get('success'))
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                <p>{{ $message }}</p>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                        @endif
-
-                        @if ($message = Session::get('warning'))
-                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                <p>{{ $message }}</p>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                        @endif
-
-                        @if ($message = Session::get('error'))
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                <p>{{ $message }}</p>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                        @endif
-                    </div>
-                    @yield('content')
+                <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
+                    @yield('right-sidebar')  
                 </div>
             </div>
         </main>

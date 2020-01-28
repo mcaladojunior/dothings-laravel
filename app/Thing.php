@@ -22,9 +22,7 @@ class Thing extends Model
 
 	public function steps()
     {
-        return $this->hasMany('App\Thing', 'thing_id')
-                ->orderBy('created_at', 'desc')
-                ->orderBy('updated_at', 'desc');
+        return $this->hasMany('App\Thing', 'thing_id')->orderBy('updated_at', 'desc');
     }    
 
     public function mainThing()
@@ -36,13 +34,12 @@ class Thing extends Model
     {
         return $this->belongsToMany(
             'App\Lists', 'lists_has_things', 'thing_id', 'list_id'
-        )->orderBy('created_at', 'desc')
-            ->orderBy('updated_at', 'desc');;
+        )->orderBy('updated_at', 'desc');
     }
 
     public function reminders()
     {
-        return $this->hasMany('App\Reminder')->orderBy('created_at', 'desc')
+        return $this->hasMany('App\Reminder')
                 ->orderBy('updated_at', 'desc')
                 ->orderBy('date_time', 'desc');
     }

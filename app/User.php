@@ -39,16 +39,20 @@ class User extends Authenticatable
 
     public function things()
     {
-        return $this->hasMany('App\Thing');
+        return $this->hasMany('App\Thing')->orderBy('updated_at', 'desc');
     }
 
     public function lists()
     {
-        return $this->hasMany('App\Lists');
+        return $this->hasMany('App\Lists')
+                ->orderBy('created_at', 'desc')
+                ->orderBy('priority', 'desc');
     }
 
     public function reminders()
     {
-        return $this->hasMany('App\Reminder');
+        return $this->hasMany('App\Reminder')
+                ->orderBy('created_at', 'desc')
+                ->orderBy('date_time', 'desc');
     }
 }

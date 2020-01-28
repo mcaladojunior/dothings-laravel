@@ -1,10 +1,10 @@
 <template>
-    <div class="card my-1">
-        <div class="card-body"">
+    <div class="card">
+        <div class="card-body">
             <div class="row justify-content-center">
                 <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
-                    <div v-if="name.length < 25" data-toggle="tooltip" data-placement="top" v-bind:title="name">{{ name }}</div>
-                    <div v-else data-toggle="tooltip" data-placement="top" v-bind:title="name">{{ name.substring(0,25)+"..." }}</div>
+                    <div v-if="name.length < 21" data-toggle="tooltip" data-placement="top" v-bind:title="name">{{ name }}</div>
+                    <div v-else data-toggle="tooltip" data-placement="top" v-bind:title="name">{{ name.substring(0,19)+"..." }}</div>
                 </div>
                 <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 text-right">
                     <i class="fas fa-tasks mx-1" data-toggle="tooltip" data-placement="top" v-bind:title="status"></i>
@@ -13,6 +13,7 @@
                     <i class="fas fa-sort-amount-down mx-1" data-toggle="tooltip" data-placement="top" v-bind:title="difficulty"></i>
                     <i class="fas fa-star mx-1" data-toggle="tooltip" data-placement="top" v-bind:title="importance"></i>
                     <i class="fas fa-exclamation-triangle mx-1" data-toggle="tooltip" data-placement="top" v-bind:title="urgency"></i>
+                    <i class="fas fa-ellipsis-v mx-1" data-toggle="tooltip" data-placement="top" title="options"></i>
                 </div>
             </div>
         </div>

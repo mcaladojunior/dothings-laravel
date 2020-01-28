@@ -21,7 +21,6 @@ class Lists extends Model
     {
         return $this->belongsToMany(
         	'App\Thing', 'lists_has_things', 'list_id', 'thing_id'
-        )->orderBy('created_at', 'desc')
-        ->orderBy('updated_at', 'desc');
+        )->orderBy('updated_at', 'desc');
     }   
 }

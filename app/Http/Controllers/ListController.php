@@ -15,7 +15,7 @@ class ListController extends Controller
 
     public function index()
     {
-    	$lists = Auth::user()->lists()->paginate(15);
+    	$lists = Auth::user()->lists()->paginate(25);
         return view('lists.index', compact('lists'));
     }
 
@@ -54,12 +54,11 @@ class ListController extends Controller
 
     public function update(Request $request, $id)
     {
-    	$request->validate([
-            'name' => 'required|max:128', 
-            'priority' => 'required'
+        $request->validate([
+            'name' => 'required|max:128',
         ]);
-        
-        Lists::whereId($id)->andWhere('user_id', Auth::id())->update([
+
+        Auth::user()->lists()->whereId($id)->first()->update([
         	'name' => $request['name'], 
         	'description' => $request['description'],
             'priority' => $request['priority']
